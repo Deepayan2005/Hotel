@@ -1,0 +1,2850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grand Vista Hotel | Luxury Stays & Comfort</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #173c35;
+            --primary-dark: #102d28;
+            --gold: #c6a46a;
+            --gold-light: #e4cfaa;
+            --cream: #f8f6f0;
+            --white: #ffffff;
+            --text: #26332e;
+            --muted: #777f79;
+            --border: #e8e5dd;
+            --shadow: 0 15px 45px rgba(20, 40, 32, 0.10);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--text);
+            background: var(--white);
+            line-height: 1.6;
+        }
+
+        button, input, select, textarea {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .container {
+            width: min(1180px, 92%);
+            margin: auto;
+        }
+
+        .section {
+            padding: 90px 0;
+        }
+
+        .section-heading {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 45px;
+        }
+
+        .eyebrow {
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 500;
+            line-height: 1.2;
+        }
+
+        .section-heading h2 {
+            font-size: clamp(32px, 4vw, 45px);
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+        }
+
+        .section-heading p {
+            color: var(--muted);
+            font-size: 15px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            padding: 13px 23px;
+            border: 1px solid transparent;
+            font-size: 13px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--primary-dark);
+        }
+
+        .btn-primary:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border-color: rgba(255,255,255,0.7);
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary-dark);
+        }
+
+        /* NAVIGATION */
+
+        .topbar {
+            background: var(--primary-dark);
+            color: rgba(255,255,255,0.8);
+            padding: 9px 0;
+            font-size: 12px;
+        }
+
+        .topbar-content {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .topbar-info {
+            display: flex;
+            gap: 22px;
+            flex-wrap: wrap;
+        }
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255,255,255,0.97);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(12px);
+        }
+
+        .nav-content {
+            min-height: 82px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 43px;
+            height: 43px;
+            display: grid;
+            place-items: center;
+            background: var(--primary);
+            color: var(--gold-light);
+            font-size: 22px;
+        }
+
+        .logo-text h2 {
+            font-size: 22px;
+            color: var(--primary);
+            letter-spacing: 1px;
+        }
+
+        .logo-text span {
+            font-size: 9px;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 13px;
+            font-weight: 600;
+            color: #4c5751;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .menu-toggle {
+            display: none;
+            border: none;
+            background: none;
+            color: var(--primary);
+            font-size: 27px;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 650px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background:
+                linear-gradient(90deg, rgba(10,31,26,0.88), rgba(10,31,26,0.35)),
+                url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=2000&q=85')
+                center/cover;
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 720px;
+            padding: 100px 0 160px;
+        }
+
+        .hero .eyebrow {
+            color: var(--gold-light);
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 6vw, 75px);
+            margin-bottom: 22px;
+        }
+
+        .hero p {
+            color: rgba(255,255,255,0.85);
+            font-size: 16px;
+            max-width: 570px;
+            margin-bottom: 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        /* BOOKING SEARCH */
+
+        .booking-wrapper {
+            position: relative;
+            z-index: 5;
+            margin-top: -75px;
+        }
+
+        .booking-box {
+            background: white;
+            box-shadow: var(--shadow);
+            padding: 30px;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr) auto;
+            gap: 18px;
+            align-items: end;
+            border-top: 3px solid var(--gold);
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 9px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border);
+            outline: none;
+            background: #fcfbf8;
+            color: var(--text);
+            font-size: 13px;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--gold);
+        }
+
+        .booking-box .btn {
+            min-height: 44px;
+            white-space: nowrap;
+        }
+
+        /* INTRODUCTION */
+
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 65px;
+            align-items: center;
+        }
+
+        .intro-images {
+            position: relative;
+            padding: 0 35px 35px 0;
+        }
+
+        .intro-images img {
+            height: 480px;
+        }
+
+        .intro-small {
+            position: absolute;
+            width: 48%;
+            height: 210px !important;
+            bottom: 0;
+            right: 0;
+            border: 8px solid white;
+        }
+
+        .intro-content h2 {
+            font-size: 43px;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+        }
+
+        .intro-content > p {
+            color: var(--muted);
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        .intro-points {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .intro-point {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .point-icon {
+            min-width: 38px;
+            height: 38px;
+            background: var(--cream);
+            color: var(--gold);
+            display: grid;
+            place-items: center;
+            font-size: 18px;
+        }
+
+        .intro-point h4 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .intro-point p {
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        /* ROOM CARDS */
+
+        .rooms-section {
+            background: var(--cream);
+        }
+
+        .room-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 35px;
+        }
+
+        .filter-btn {
+            padding: 10px 19px;
+            border: 1px solid #dedbd2;
+            background: white;
+            color: var(--text);
+            font-size: 12px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .rooms-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 27px;
+        }
+
+        .room-card {
+            background: white;
+            box-shadow: 0 7px 25px rgba(0,0,0,0.045);
+            transition: 0.3s;
+            overflow: hidden;
+        }
+
+        .room-card:hover {
+            transform: translateY(-7px);
+            box-shadow: var(--shadow);
+        }
+
+        .room-image {
+            position: relative;
+            height: 245px;
+            overflow: hidden;
+        }
+
+        .room-image img {
+            height: 100%;
+            transition: 0.5s;
+        }
+
+        .room-card:hover .room-image img {
+            transform: scale(1.06);
+        }
+
+        .room-tag {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            padding: 7px 12px;
+            background: var(--gold);
+            color: var(--primary-dark);
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .room-price {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background: var(--primary);
+            color: white;
+            padding: 12px 17px;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .room-price small {
+            font-size: 10px;
+            font-weight: 400;
+            color: var(--gold-light);
+        }
+
+        .room-body {
+            padding: 23px;
+        }
+
+        .room-title-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .room-title-row h3 {
+            font-size: 23px;
+            color: var(--primary);
+        }
+
+        .room-rating {
+            font-size: 11px;
+            color: #b78c42;
+            white-space: nowrap;
+        }
+
+        .room-description {
+            color: var(--muted);
+            font-size: 12px;
+            min-height: 58px;
+            margin-bottom: 16px;
+        }
+
+        .room-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 13px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 17px;
+            margin-bottom: 17px;
+            color: #68736d;
+            font-size: 11px;
+        }
+
+        .room-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .room-features span {
+            background: var(--cream);
+            padding: 6px 9px;
+            font-size: 10px;
+            color: #5b665f;
+        }
+
+        .room-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .room-footer .btn {
+            padding: 10px 15px;
+            font-size: 11px;
+        }
+
+        .details-btn {
+            border: none;
+            background: transparent;
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 700;
+            text-decoration: underline;
+        }
+
+        /* AMENITIES */
+
+        .amenities-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .amenity-card {
+            text-align: center;
+            padding: 32px 18px;
+            border: 1px solid var(--border);
+            transition: 0.3s;
+        }
+
+        .amenity-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .amenity-icon {
+            font-size: 32px;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .amenity-card h3 {
+            font-size: 19px;
+            color: var(--primary);
+            margin-bottom: 9px;
+        }
+
+        .amenity-card p {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        /* GALLERY */
+
+        .gallery-section {
+            background: var(--primary-dark);
+            color: white;
+        }
+
+        .gallery-section .section-heading h2 {
+            color: white;
+        }
+
+        .gallery-section .section-heading p {
+            color: rgba(255,255,255,0.65);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: 1.3fr 1fr 1fr;
+            grid-template-rows: 220px 220px;
+            gap: 15px;
+        }
+
+        .gallery-item {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .gallery-item:first-child {
+            grid-row: span 2;
+        }
+
+        .gallery-item img {
+            height: 100%;
+            transition: 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px 18px 15px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.75));
+            font-family: 'Playfair Display', serif;
+            font-size: 19px;
+        }
+
+        /* RESTAURANT */
+
+        .restaurant-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 55px;
+            align-items: center;
+        }
+
+        .restaurant-image img {
+            height: 440px;
+        }
+
+        .restaurant-content h2 {
+            font-size: 42px;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+        }
+
+        .restaurant-content p {
+            color: var(--muted);
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .restaurant-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+            margin: 25px 0;
+        }
+
+        .restaurant-info div {
+            border-left: 2px solid var(--gold);
+            padding-left: 13px;
+        }
+
+        .restaurant-info strong {
+            display: block;
+            font-size: 12px;
+            color: var(--primary);
+        }
+
+        .restaurant-info span {
+            font-size: 11px;
+            color: var(--muted);
+        }
+
+        /* TESTIMONIALS */
+
+        .testimonials {
+            background: var(--cream);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 30px;
+            border: 1px solid var(--border);
+        }
+
+        .testimonial-stars {
+            color: #c49b51;
+            letter-spacing: 3px;
+            margin-bottom: 18px;
+        }
+
+        .testimonial-card > p {
+            font-family: 'Playfair Display', serif;
+            font-size: 17px;
+            line-height: 1.6;
+            color: #46534c;
+            margin-bottom: 25px;
+        }
+
+        .guest {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .guest-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: grid;
+            place-items: center;
+            font-weight: 700;
+        }
+
+        .guest strong {
+            display: block;
+            font-size: 12px;
+        }
+
+        .guest span {
+            color: var(--muted);
+            font-size: 10px;
+        }
+
+        /* LOCATION */
+
+        .location-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 45px;
+            align-items: center;
+        }
+
+        .location-content h2 {
+            font-size: 40px;
+            color: var(--primary-dark);
+            margin-bottom: 18px;
+        }
+
+        .location-content > p {
+            color: var(--muted);
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        .location-list {
+            display: grid;
+            gap: 17px;
+        }
+
+        .location-item {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .location-icon {
+            min-width: 42px;
+            height: 42px;
+            background: var(--cream);
+            color: var(--gold);
+            display: grid;
+            place-items: center;
+            font-size: 18px;
+        }
+
+        .location-item strong {
+            display: block;
+            color: var(--primary);
+            font-size: 13px;
+        }
+
+        .location-item span {
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .map-placeholder {
+            min-height: 390px;
+            background:
+                linear-gradient(rgba(23,60,53,0.2), rgba(23,60,53,0.2)),
+                url('https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=1000&q=80')
+                center/cover;
+            display: grid;
+            place-items: center;
+        }
+
+        .map-card {
+            background: white;
+            padding: 25px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            max-width: 280px;
+        }
+
+        .map-card h3 {
+            color: var(--primary);
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+
+        .map-card p {
+            font-size: 11px;
+            color: var(--muted);
+            margin-bottom: 15px;
+        }
+
+        /* CTA */
+
+        .cta-section {
+            background:
+                linear-gradient(rgba(13,39,33,0.87), rgba(13,39,33,0.87)),
+                url('https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1800&q=85')
+                center/cover;
+            color: white;
+            text-align: center;
+            padding: 85px 0;
+        }
+
+        .cta-section h2 {
+            font-size: clamp(35px, 4vw, 48px);
+            margin-bottom: 15px;
+        }
+
+        .cta-section p {
+            color: rgba(255,255,255,0.75);
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        /* CONTACT */
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 50px;
+        }
+
+        .contact-info h2 {
+            color: var(--primary);
+            font-size: 38px;
+            margin-bottom: 15px;
+        }
+
+        .contact-info > p {
+            color: var(--muted);
+            font-size: 13px;
+            margin-bottom: 30px;
+        }
+
+        .contact-detail {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 23px;
+        }
+
+        .contact-detail .point-icon {
+            min-width: 42px;
+        }
+
+        .contact-detail strong {
+            display: block;
+            color: var(--primary);
+            font-size: 13px;
+        }
+
+        .contact-detail span {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .contact-form {
+            background: var(--cream);
+            padding: 35px;
+        }
+
+        .contact-form h3 {
+            color: var(--primary);
+            font-size: 26px;
+            margin-bottom: 22px;
+        }
+
+        .contact-form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 17px;
+        }
+
+        .contact-form .form-group.full {
+            grid-column: span 2;
+        }
+
+        .contact-form textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        .contact-form button {
+            margin-top: 20px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #102a25;
+            color: white;
+            padding: 65px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+            gap: 40px;
+            padding-bottom: 45px;
+        }
+
+        .footer-about p {
+            color: rgba(255,255,255,0.6);
+            font-size: 12px;
+            margin: 20px 0;
+            max-width: 280px;
+        }
+
+        .footer-logo h2 {
+            font-size: 25px;
+        }
+
+        .footer-logo span {
+            color: var(--gold);
+            font-size: 10px;
+            letter-spacing: 3px;
+        }
+
+        .footer-column h3 {
+            font-size: 19px;
+            margin-bottom: 20px;
+            color: var(--gold-light);
+        }
+
+        .footer-column ul {
+            list-style: none;
+            display: grid;
+            gap: 11px;
+        }
+
+        .footer-column li,
+        .footer-column a {
+            color: rgba(255,255,255,0.65);
+            font-size: 12px;
+            transition: 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: var(--gold);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.12);
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+            color: rgba(255,255,255,0.5);
+            font-size: 11px;
+        }
+
+        /* MODALS */
+
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: rgba(0,0,0,0.65);
+            padding: 20px;
+            overflow-y: auto;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            width: min(650px, 100%);
+            background: white;
+            position: relative;
+            padding: 35px;
+            animation: modalOpen 0.25s ease;
+        }
+
+        @keyframes modalOpen {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 13px;
+            right: 17px;
+            border: none;
+            background: none;
+            font-size: 27px;
+            color: var(--primary);
+        }
+
+        .modal-content h2 {
+            color: var(--primary);
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .modal-content > p {
+            color: var(--muted);
+            font-size: 12px;
+            margin-bottom: 25px;
+        }
+
+        .modal-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .modal-form .full {
+            grid-column: span 2;
+        }
+
+        .modal-form button {
+            grid-column: span 2;
+            margin-top: 5px;
+        }
+
+        .room-details-list {
+            display: grid;
+            gap: 13px;
+            margin: 20px 0;
+        }
+
+        .room-details-list div {
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 10px;
+            font-size: 13px;
+        }
+
+        .room-details-list strong {
+            color: var(--primary);
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 1050px) {
+            .booking-box {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .rooms-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .nav-links {
+                gap: 17px;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .topbar-content {
+                justify-content: center;
+            }
+
+            .topbar-info {
+                justify-content: center;
+            }
+
+            .nav-content {
+                min-height: 70px;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: white;
+                padding: 25px 5%;
+                flex-direction: column;
+                align-items: flex-start;
+                border-bottom: 1px solid var(--border);
+                box-shadow: var(--shadow);
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-actions .btn {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero {
+                min-height: 570px;
+            }
+
+            .hero-content {
+                padding: 85px 0 120px;
+            }
+
+            .booking-box {
+                grid-template-columns: 1fr 1fr;
+                padding: 22px;
+            }
+
+            .booking-box .btn {
+                grid-column: span 2;
+            }
+
+            .intro-grid,
+            .restaurant-grid,
+            .location-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+
+            .intro-images img {
+                height: 350px;
+            }
+
+            .intro-small {
+                height: 150px !important;
+            }
+
+            .intro-content h2,
+            .restaurant-content h2,
+            .location-content h2 {
+                font-size: 34px;
+            }
+
+            .amenities-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 250px 180px 180px;
+            }
+
+            .gallery-item:first-child {
+                grid-column: span 2;
+                grid-row: span 1;
+            }
+
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .section {
+                padding: 65px 0;
+            }
+
+            .rooms-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .booking-box {
+                grid-template-columns: 1fr;
+            }
+
+            .booking-box .btn {
+                grid-column: span 1;
+            }
+
+            .intro-points {
+                grid-template-columns: 1fr;
+            }
+
+            .amenities-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+
+            .amenity-card {
+                padding: 22px 10px;
+            }
+
+            .gallery-grid {
+                grid-template-rows: 220px 150px 150px;
+                gap: 8px;
+            }
+
+            .restaurant-info {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form {
+                padding: 23px;
+            }
+
+            .contact-form-grid,
+            .modal-form {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form .form-group.full,
+            .modal-form .full,
+            .modal-form button {
+                grid-column: span 1;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .modal-content {
+                padding: 28px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- TOP BAR -->
+
+    <div class="topbar">
+        <div class="container topbar-content">
+            <div class="topbar-info">
+                <span>☎ +91 98765 43210</span>
+                <span>✉ reservations@grandvista.com</span>
+            </div>
+            <div>Luxury Stay · Exceptional Hospitality · Memorable Experiences</div>
+        </div>
+    </div>
+
+    <!-- NAVIGATION -->
+
+    <nav class="navbar">
+        <div class="container nav-content">
+
+            <a href="#" class="logo">
+                <div class="logo-icon">✦</div>
+                <div class="logo-text">
+                    <h2>GRAND VISTA</h2>
+                    <span>Luxury Hotel & Resort</span>
+                </div>
+            </a>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#rooms">Our Rooms</a></li>
+                <li><a href="#amenities">Facilities</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="btn btn-primary" onclick="openBooking()">
+                    Book Your Stay →
+                </button>
+
+                <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+
+                <div class="eyebrow">Welcome to Grand Vista Hotel</div>
+
+                <h1>Where Luxury Meets Unforgettable Comfort.</h1>
+
+                <p>
+                    Experience thoughtfully designed rooms, exceptional hospitality,
+                    exquisite dining and peaceful surroundings. Your perfect stay
+                    begins here.
+                </p>
+
+                <div class="hero-buttons">
+                    <a href="#rooms" class="btn btn-primary">Explore Our Rooms →</a>
+                    <a href="#about" class="btn btn-outline">Discover Our Hotel</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- BOOKING SEARCH -->
+
+    <div class="container booking-wrapper">
+        <form class="booking-box" id="quickBooking">
+
+            <div class="form-group">
+                <label>Check In</label>
+                <input type="date" id="quickCheckin" required>
+            </div>
+
+            <div class="form-group">
+                <label>Check Out</label>
+                <input type="date" id="quickCheckout" required>
+            </div>
+
+            <div class="form-group">
+                <label>Guests</label>
+                <select id="quickGuests">
+                    <option value="1">1 Guest</option>
+                    <option value="2" selected>2 Guests</option>
+                    <option value="3">3 Guests</option>
+                    <option value="4">4 Guests</option>
+                    <option value="5">5 Guests</option>
+                    <option value="6">6 Guests</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Rooms</label>
+                <select id="quickRooms">
+                    <option value="1">1 Room</option>
+                    <option value="2">2 Rooms</option>
+                    <option value="3">3 Rooms</option>
+                    <option value="4">4 Rooms</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Room Type</label>
+                <select id="quickRoomType">
+                    <option value="Any Room">Any Room</option>
+                    <option value="Deluxe Room">Deluxe Room</option>
+                    <option value="Premium Room">Premium Room</option>
+                    <option value="Executive Suite">Executive Suite</option>
+                    <option value="Family Suite">Family Suite</option>
+                    <option value="Presidential Suite">Presidential Suite</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+                Check Availability
+            </button>
+
+        </form>
+    </div>
+
+    <!-- ABOUT HOTEL -->
+
+    <section class="section" id="about">
+        <div class="container intro-grid">
+
+            <div class="intro-images">
+                <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=1000&q=85"
+                     alt="Luxury hotel bedroom">
+
+                <img class="intro-small"
+                     src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=600&q=85"
+                     alt="Elegant hotel interior">
+            </div>
+
+            <div class="intro-content">
+
+                <div class="eyebrow">About Grand Vista</div>
+
+                <h2>A Perfect Blend of Elegance, Comfort & Hospitality.</h2>
+
+                <p>
+                    At Grand Vista, we believe that a hotel stay should be more
+                    than just a place to sleep. It should be an experience that
+                    makes you feel relaxed, welcomed and special.
+                </p>
+
+                <p>
+                    From beautifully furnished rooms to personalized guest
+                    services, every detail is carefully designed to make your
+                    visit memorable. Whether you are travelling for business,
+                    enjoying a family vacation or celebrating a special occasion,
+                    we are here to make your stay exceptional.
+                </p>
+
+                <div class="intro-points">
+
+                    <div class="intro-point">
+                        <div class="point-icon">✦</div>
+                        <div>
+                            <h4>Premium Comfort</h4>
+                            <p>Elegant interiors and quality bedding.</p>
+                        </div>
+                    </div>
+
+                    <div class="intro-point">
+                        <div class="point-icon">♨</div>
+                        <div>
+                            <h4>Relaxing Experience</h4>
+                            <p>Peaceful spaces for complete relaxation.</p>
+                        </div>
+                    </div>
+
+                    <div class="intro-point">
+                        <div class="point-icon">♧</div>
+                        <div>
+                            <h4>Fine Dining</h4>
+                            <p>Delicious meals and excellent service.</p>
+                        </div>
+                    </div>
+
+                    <div class="intro-point">
+                        <div class="point-icon">♡</div>
+                        <div>
+                            <h4>Personalized Care</h4>
+                            <p>Friendly assistance throughout your stay.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <a href="#rooms" class="btn btn-primary">Explore Our Rooms →</a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ROOMS -->
+
+    <section class="section rooms-section" id="rooms">
+        <div class="container">
+
+            <div class="section-heading">
+                <div class="eyebrow">Accommodation</div>
+                <h2>Discover Your Perfect Stay</h2>
+                <p>
+                    Choose from our carefully designed collection of rooms
+                    and suites, each offering a unique blend of luxury,
+                    privacy and comfort.
+                </p>
+            </div>
+
+            <div class="room-filters">
+                <button class="filter-btn active" onclick="filterRooms('all', this)">All Rooms</button>
+                <button class="filter-btn" onclick="filterRooms('standard', this)">Standard</button>
+                <button class="filter-btn" onclick="filterRooms('deluxe', this)">Deluxe</button>
+                <button class="filter-btn" onclick="filterRooms('suite', this)">Suites</button>
+                <button class="filter-btn" onclick="filterRooms('family', this)">Family</button>
+            </div>
+
+            <div class="rooms-grid">
+
+                <!-- STANDARD ROOM -->
+
+                <div class="room-card" data-category="standard">
+
+                    <div class="room-image">
+                        <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=900&q=85"
+                             alt="Standard hotel room">
+
+                        <span class="room-tag">Comfort Stay</span>
+
+                        <div class="room-price">
+                            ₹2,499 <small>/ night</small>
+                        </div>
+                    </div>
+
+                    <div class="room-body">
+
+                        <div class="room-title-row">
+                            <h3>Standard Room</h3>
+                            <span class="room-rating">★★★★★</span>
+                        </div>
+
+                        <p class="room-description">
+                            A comfortable and affordable accommodation
+                            designed for solo travellers and couples.
+                        </p>
+
+                        <div class="room-meta">
+                            <span>▣ 220 sq. ft.</span>
+                            <span>♙ 2 Guests</span>
+                            <span>▤ 1 King Bed</span>
+                        </div>
+
+                        <div class="room-features">
+                            <span>Free Wi-Fi</span>
+                            <span>Air Conditioning</span>
+                            <span>TV</span>
+                            <span>Attached Bathroom</span>
+                        </div>
+
+                        <div class="room-footer">
+                            <button class="details-btn"
+                                    onclick="showRoomDetails('standard')">
+                                View Details
+                            </button>
+
+                            <button class="btn btn-primary"
+                                    onclick="openBooking('Standard Room')">
+                                Book Now
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- DELUXE ROOM -->
+
+                <div class="room-card" data-category="deluxe">
+
+                    <div class="room-image">
+                        <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=900&q=85"
+                             alt="Deluxe hotel room">
+
+                        <span class="room-tag">Popular Choice</span>
+
+                        <div class="room-price">
+                            ₹3,499 <small>/ night</small>
+                        </div>
+                    </div>
+
+                    <div class="room-body">
+
+                        <div class="room-title-row">
+                            <h3>Deluxe Room</h3>
+                            <span class="room-rating">★★★★★</span>
+                        </div>
+
+                        <p class="room-description">
+                            A spacious room with premium interiors,
+                            comfortable bedding and modern facilities.
+                        </p>
+
+                        <div class="room-meta">
+                            <span>▣ 300 sq. ft.</span>
+                            <span>♙ 2 Guests</span>
+                            <span>▤ 1 King Bed</span>
+                        </div>
+
+                        <div class="room-features">
+                            <span>Free Wi-Fi</span>
+                            <span>Mini Fridge</span>
+                            <span>Smart TV</span>
+                            <span>Room Service</span>
+                        </div>
+
+                        <div class="room-footer">
+                            <button class="details-btn"
+                                    onclick="showRoomDetails('deluxe')">
+                                View Details
+                            </button>
+
+                            <button class="btn btn-primary"
+                                    onclick="openBooking('Deluxe Room')">
+                                Book Now
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- PREMIUM ROOM -->
+
+                <div class="room-card" data-category="deluxe">
+
+                    <div class="room-image">
+                        <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=900&q=85"
+                             alt="Premium hotel room">
+
+                        <span class="room-tag">Premium Experience</span>
+
+                        <div class="room-price">
+                            ₹4,499 <small>/ night</small>
+                        </div>
+                    </div>
+
+                    <div class="room-body">
+
+                        <div class="room-title-row">
+                            <h3>Premium Room</h3>
+                            <span class="room-rating">★★★★★</span>
+                        </div>
+
+                        <p class="room-description">
+                            Enjoy enhanced comfort, stylish interiors
+                            and additional amenities for a relaxing stay.
+                        </p>
+
+                        <div class="room-meta">
+                            <span>▣ 360 sq. ft.</span>
+                            <span>♙ 2 Guests</span>
+                            <span>▤ King Bed</span>
+                        </div>
+
+                        <div class="room-features">
+                            <span>City View</span>
+                            <span>Mini Bar</span>
+                            <span>Smart TV</span>
+                            <span>Premium Toiletries</span>
+                        </div>
+
+                        <div class="room-footer">
+                            <button class="details-btn"
+                                    onclick="showRoomDetails('premium')">
+                                View Details
+                            </button>
+
+                            <button class="btn btn-primary"
+                                    onclick="openBooking('Premium Room')">
+                                Book Now
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- EXECUTIVE SUITE -->
+
+                <div class="room-card" data-category="suite">
+
+                    <div class="room-image">
+                        <img src="https://images.unsplash.com/photo-1591088398332-8a7791972843?auto=format&fit=crop&w=900&q=85"
+                             alt="Executive suite">
+
+                        <span class="room-tag">Luxury Collection</span>
+
+                        <div class="room-price">
+                            ₹6,999 <small>/ night</small>
+                        </div>
+                    </div>
+
+                    <div class="room-body">
+
+                        <div class="room-title-row">
+                            <h3>Executive Suite</h3>
+                            <span class="room-rating">★★★★★</span>
+                        </div>
+
+                        <p class="room-description">
+                            An elegant suite featuring a separate living
+                            area, premium furnishings and exclusive services.
+                        </p>
+
+                        <div class="room-meta">
+                            <span>▣ 500 sq. ft.</span>
+                            <span>♙ 2 Guests</span>
+                            <span>▤ King Bed</span>
+                        </div>
+
+                        <div class="room-features">
+                            <span>Living Room</span>
+                            <span>Bathtub</span>
+                            <span>Work Desk</span>
+                            <span>Priority Service</span>
+                        </div>
+
+                        <div class="room-footer">
+                            <button class="details-btn"
+                                    onclick="showRoomDetails('executive')">
+                                View Details
+                            </button>
+
+                            <button class="btn btn-primary"
+                                    onclick="openBooking('Executive Suite')">
+                                Book Now
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- FAMILY SUITE -->
+
+                <div class="room-card" data-category="family">
+
+                    <div class="room-image">
+                        <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=85"
+                             alt="Family suite">
+
+                        <span class="room-tag">Family Favourite</span>
+
+                        <div class="room-price">
+                            ₹7,499 <small>/ night</small>
+                        </div>
+                    </div>
+
+                    <div class="room-body">
+
+                        <div class="room-title-row">
+                            <h3>Family Suite</h3>
+                            <span class="room-rating">★★★★★</span>
+                        </div>
+
+                        <p class="room-description">
+                            A spacious family accommodation with multiple
+                            sleeping arrangements and generous living space.
+                        </p>
+
+                        <div class="room-meta">
+                            <span>▣ 650 sq. ft.</span>
+                            <span>♙ 4 Guests</span>
+                            <span>▤ 2 Beds</span>
+                        </div>
+
+                        <div class="room-features">
+                            <span>2 Bedrooms</span>
+                            <span>Family Lounge</span>
+                            <span>Dining Area</span>
+                            <span>Smart TV</span>
+                        </div>
+
+                        <div class="room-footer">
+                            <button class="details-btn"
+                                    onclick="showRoomDetails('family')">
+                                View Details
+                            </button>
+
+                            <button class="btn btn-primary"
+                                    onclick="openBooking('Family Suite')">
+                                Book Now
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- PRESIDENTIAL SUITE -->
+
+                <div class="room-card" data-category="suite">
+
+                    <div class="room-image">
+                        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=85"
+                             alt="Presidential suite">
+
+                        <span class="room-tag">Ultimate Luxury</span>
+
+                        <div class="room-price">
+                            ₹12,999 <small>/ night</small>
+                        </div>
+                    </div>
+
+                    <div class="room-body">
+
+                        <div class="room-title-row">
+                            <h3>Presidential Suite</h3>
+                            <span class="room-rating">★★★★★</span>
+                        </div>
+
+                        <p class="room-description">
+                            Our finest accommodation with exceptional space,
+                            exclusive services and sophisticated interiors.
+                        </p>
+
+                        <div class="room-meta">
+                            <span>▣ 1000 sq. ft.</span>
+                            <span>♙ 4 Guests</span>
+                            <span>▤ 2 King Beds</span>
+                        </div>
+
+                        <div class="room-features">
+                            <span>Private Lounge</span>
+                            <span>Luxury Bathtub</span>
+                            <span>Dining Area</span>
+                            <span>VIP Service</span>
+                        </div>
+
+                        <div class="room-footer">
+                            <button class="details-btn"
+                                    onclick="showRoomDetails('presidential')">
+                                View Details
+                            </button>
+
+                            <button class="btn btn-primary"
+                                    onclick="openBooking('Presidential Suite')">
+                                Book Now
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FACILITIES -->
+
+    <section class="section" id="amenities">
+        <div class="container">
+
+            <div class="section-heading">
+                <div class="eyebrow">Hotel Facilities</div>
+                <h2>Everything You Need for a Perfect Stay</h2>
+                <p>
+                    Enjoy a complete hospitality experience with thoughtfully
+                    selected facilities and services.
+                </p>
+            </div>
+
+            <div class="amenities-grid">
+
+                <div class="amenity-card">
+                    <span class="amenity-icon">📶</span>
+                    <h3>Free Wi-Fi</h3>
+                    <p>High-speed internet access throughout the hotel.</p>
+                </div>
+
+                <div class="amenity-card">
+                    <span class="amenity-icon">🏊</span>
+                    <h3>Swimming Pool</h3>
+                    <p>A refreshing swimming experience for our guests.</p>
+                </div>
+
+                <div class="amenity-card">
+                    <span class="amenity-icon">🍽️</span>
+                    <h3>Restaurant</h3>
+                    <p>Multi-cuisine dining with delicious food options.</p>
+                </div>
+
+                <div class="amenity-card">
+                    <span class="amenity-icon">🚗</span>
+                    <h3>Free Parking</h3>
+                    <p>Convenient and secure parking for hotel guests.</p>
+                </div>
+
+                <div class="amenity-card">
+                    <span class="amenity-icon">🧹</span>
+                    <h3>Room Cleaning</h3>
+                    <p>Daily housekeeping and fresh room arrangements.</p>
+                </div>
+
+                <div class="amenity-card">
+                    <span class="amenity-icon">🛎️</span>
+                    <h3>24/7 Reception</h3>
+                    <p>Round-the-clock assistance and guest support.</p>
+                </div>
+
+                <div class="amenity-card">
+                    <span class="amenity-icon">💆</span>
+                    <h3>Spa & Wellness</h3>
+                    <p>Relaxing treatments for your mind and body.</p>
+                </div>
+
+                <div class="amenity-card">
+                    <span class="amenity-icon">✈️</span>
+                    <h3>Airport Transfer</h3>
+                    <p>Convenient pickup and drop-off arrangements.</p>
+                </div>
+
+                <div class="amenity-card">
+                    <span class="amenity-icon">🏋️</span>
+                    <h3>Fitness Centre</h3>
+                    <p>Well-equipped gym for your daily fitness routine.</p>
+                </div>
+
+                <div class="amenity-card">
+                    <span class="amenity-icon">👔</span>
+                    <h3>Laundry Service</h3>
+                    <p>Professional laundry and ironing assistance.</p>
+                </div>
+
+                <div class="amenity-card">
+                    <span class="amenity-icon">🧑‍💼</span>
+                    <h3>Business Centre</h3>
+                    <p>Workspace and meeting facilities for professionals.</p>
+                </div>
+
+                <div class="amenity-card">
+                    <span class="amenity-icon">🛡️</span>
+                    <h3>24/7 Security</h3>
+                    <p>Guest safety with monitored hotel premises.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+
+    <section class="section gallery-section" id="gallery">
+        <div class="container">
+
+            <div class="section-heading">
+                <div class="eyebrow">Visual Experience</div>
+                <h2>Explore Our Hotel</h2>
+                <p>
+                    Take a glimpse into the beautiful spaces, relaxing
+                    surroundings and luxurious experiences awaiting you.
+                </p>
+            </div>
+
+            <div class="gallery-grid">
+
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1000&q=85"
+                         alt="Hotel exterior">
+                    <div class="gallery-caption">Grand Hotel Exterior</div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=800&q=85"
+                         alt="Hotel bedroom">
+                    <div class="gallery-caption">Elegant Bedrooms</div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=85"
+                         alt="Swimming pool">
+                    <div class="gallery-caption">Swimming Pool</div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=800&q=85"
+                         alt="Hotel restaurant">
+                    <div class="gallery-caption">Fine Dining</div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=85"
+                         alt="Hotel lounge">
+                    <div class="gallery-caption">Luxury Lounge</div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- RESTAURANT -->
+
+    <section class="section">
+        <div class="container restaurant-grid">
+
+            <div class="restaurant-image">
+                <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1000&q=85"
+                     alt="Grand Vista restaurant">
+            </div>
+
+            <div class="restaurant-content">
+
+                <div class="eyebrow">Dining Experience</div>
+
+                <h2>Exceptional Dining for Every Occasion.</h2>
+
+                <p>
+                    Discover a delightful dining experience at our in-house
+                    restaurant. From traditional favourites to international
+                    delicacies, our chefs prepare every dish with care and
+                    quality ingredients.
+                </p>
+
+                <p>
+                    Enjoy a relaxed breakfast, a delicious family lunch or
+                    an elegant dinner in a welcoming atmosphere.
+                </p>
+
+                <div class="restaurant-info">
+
+                    <div>
+                        <strong>Breakfast</strong>
+                        <span>7:00 AM – 10:30 AM</span>
+                    </div>
+
+                    <div>
+                        <strong>Lunch</strong>
+                        <span>12:30 PM – 3:30 PM</span>
+                    </div>
+
+                    <div>
+                        <strong>Dinner</strong>
+                        <span>7:00 PM – 10:30 PM</span>
+                    </div>
+
+                    <div>
+                        <strong>Room Service</strong>
+                        <span>Available 24 Hours</span>
+                    </div>
+
+                </div>
+
+                <a href="#contact" class="btn btn-primary">Enquire About Dining →</a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+
+    <section class="section testimonials">
+        <div class="container">
+
+            <div class="section-heading">
+                <div class="eyebrow">Guest Experiences</div>
+                <h2>What Our Guests Say</h2>
+                <p>
+                    Our greatest achievement is making every guest feel
+                    welcome and ensuring they leave with wonderful memories.
+                </p>
+            </div>
+
+            <div class="testimonial-grid">
+
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+
+                    <p>
+                        "A wonderful experience from check-in to checkout.
+                        The room was spacious, beautifully maintained and
+                        the staff were extremely helpful."
+                    </p>
+
+                    <div class="guest">
+                        <div class="guest-avatar">RK</div>
+                        <div>
+                            <strong>Rahul Kumar</strong>
+                            <span>Business Traveller</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+
+                    <p>
+                        "We had a lovely family vacation. The food was
+                        excellent, the rooms were clean and the hotel
+                        facilities made our stay very comfortable."
+                    </p>
+
+                    <div class="guest">
+                        <div class="guest-avatar">PS</div>
+                        <div>
+                            <strong>Priya Sharma</strong>
+                            <span>Family Guest</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+
+                    <p>
+                        "The atmosphere was peaceful and luxurious.
+                        The service was outstanding and every detail
+                        was handled professionally."
+                    </p>
+
+                    <div class="guest">
+                        <div class="guest-avatar">AM</div>
+                        <div>
+                            <strong>Arjun Mehta</strong>
+                            <span>Leisure Traveller</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- LOCATION -->
+
+    <section class="section">
+        <div class="container location-grid">
+
+            <div class="location-content">
+
+                <div class="eyebrow">Find Us</div>
+
+                <h2>Perfectly Located for Your Convenience.</h2>
+
+                <p>
+                    Stay connected to the city's important destinations
+                    while enjoying a comfortable and peaceful hotel
+                    environment.
+                </p>
+
+                <div class="location-list">
+
+                    <div class="location-item">
+                        <div class="location-icon">✈</div>
+                        <div>
+                            <strong>Airport</strong>
+                            <span>Approximately 20 minutes away</span>
+                        </div>
+                    </div>
+
+                    <div class="location-item">
+                        <div class="location-icon">🚉</div>
+                        <div>
+                            <strong>Railway Station</strong>
+                            <span>Approximately 10 minutes away</span>
+                        </div>
+                    </div>
+
+                    <div class="location-item">
+                        <div class="location-icon">🏙</div>
+                        <div>
+                            <strong>City Centre</strong>
+                            <span>Convenient access to major attractions</span>
+                        </div>
+                    </div>
+
+                    <div class="location-item">
+                        <div class="location-icon">📍</div>
+                        <div>
+                            <strong>Hotel Address</strong>
+                            <span>123 Luxury Avenue, City Centre, India</span>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="map-placeholder">
+                <div class="map-card">
+                    <h3>Grand Vista Hotel</h3>
+                    <p>123 Luxury Avenue, City Centre, India</p>
+                    <a href="https://www.google.com/maps"
+                       target="_blank"
+                       class="btn btn-primary">
+                        Open Google Maps →
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CTA -->
+
+    <section class="cta-section">
+        <div class="container">
+
+            <div class="eyebrow">Your Stay Awaits</div>
+
+            <h2>Make Your Next Stay Extraordinary.</h2>
+
+            <p>
+                Discover comfort, elegance and warm hospitality.
+                Reserve your room today and experience Grand Vista.
+            </p>
+
+            <button class="btn btn-primary" onclick="openBooking()">
+                Reserve Your Room →
+            </button>
+
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+
+    <section class="section" id="contact">
+        <div class="container contact-grid">
+
+            <div class="contact-info">
+
+                <div class="eyebrow">Get in Touch</div>
+
+                <h2>We Are Here to Help You.</h2>
+
+                <p>
+                    Have questions about room availability, facilities,
+                    group reservations or special arrangements?
+                    Our team will be happy to assist you.
+                </p>
+
+                <div class="contact-detail">
+                    <div class="point-icon">📍</div>
+                    <div>
+                        <strong>Our Location</strong>
+                        <span>123 Luxury Avenue, City Centre, India</span>
+                    </div>
+                </div>
+
+                <div class="contact-detail">
+                    <div class="point-icon">☎</div>
+                    <div>
+                        <strong>Phone Number</strong>
+                        <span>+91 98765 43210</span>
+                    </div>
+                </div>
+
+                <div class="contact-detail">
+                    <div class="point-icon">✉</div>
+                    <div>
+                        <strong>Email Address</strong>
+                        <span>reservations@grandvista.com</span>
+                    </div>
+                </div>
+
+                <div class="contact-detail">
+                    <div class="point-icon">◷</div>
+                    <div>
+                        <strong>Reception Hours</strong>
+                        <span>Open 24 Hours, Every Day</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <form class="contact-form" id="contactForm">
+
+                <h3>Send Us an Enquiry</h3>
+
+                <div class="contact-form-grid">
+
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" placeholder="Your name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" placeholder="Your email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" placeholder="Your phone number" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Enquiry Type</label>
+                        <select required>
+                            <option value="">Select enquiry</option>
+                            <option>Room Reservation</option>
+                            <option>Room Availability</option>
+                            <option>Restaurant</option>
+                            <option>Wedding & Events</option>
+                            <option>Corporate Booking</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full">
+                        <label>Your Message</label>
+                        <textarea placeholder="Tell us how we can help you..." required></textarea>
+                    </div>
+
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                    Submit Enquiry →
+                </button>
+
+            </form>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer>
+        <div class="container">
+
+            <div class="footer-grid">
+
+                <div class="footer-about">
+
+                    <div class="footer-logo">
+                        <h2>GRAND VISTA</h2>
+                        <span>LUXURY HOTEL & RESORT</span>
+                    </div>
+
+                    <p>
+                        Experience exceptional hospitality, elegant
+                        accommodation and unforgettable moments.
+                        Your comfort is our priority.
+                    </p>
+
+                    <a href="#rooms" class="btn btn-primary">Book Your Stay →</a>
+
+                </div>
+
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#rooms">Our Rooms</a></li>
+                        <li><a href="#amenities">Facilities</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Accommodation</h3>
+                    <ul>
+                        <li><a href="#rooms">Standard Room</a></li>
+                        <li><a href="#rooms">Deluxe Room</a></li>
+                        <li><a href="#rooms">Premium Room</a></li>
+                        <li><a href="#rooms">Executive Suite</a></li>
+                        <li><a href="#rooms">Family Suite</a></li>
+                        <li><a href="#rooms">Presidential Suite</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Contact Information</h3>
+                    <ul>
+                        <li>📍 123 Luxury Avenue, India</li>
+                        <li>☎ +91 98765 43210</li>
+                        <li>✉ reservations@grandvista.com</li>
+                        <li>◷ Reception: 24/7</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <span>© <span id="year"></span> Grand Vista Hotel. All Rights Reserved.</span>
+                <span>Designed for Comfort. Created for Memories.</span>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- BOOKING MODAL -->
+
+    <div class="modal" id="bookingModal">
+        <div class="modal-content">
+
+            <button class="modal-close" onclick="closeModal('bookingModal')">×</button>
+
+            <div class="eyebrow">Reservation Request</div>
+
+            <h2>Book Your Stay</h2>
+
+            <p>
+                Share your details with us. Our reservation team will
+                contact you to confirm availability and pricing.
+            </p>
+
+            <form id="bookingForm" class="modal-form">
+
+                <div class="form-group full">
+                    <label>Full Name</label>
+                    <input type="text" id="bookingName" placeholder="Enter your full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="bookingEmail" placeholder="Enter your email" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" id="bookingPhone" placeholder="Enter phone number" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Check In</label>
+                    <input type="date" id="bookingCheckin" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Check Out</label>
+                    <input type="date" id="bookingCheckout" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Room Type</label>
+                    <select id="bookingRoomType" required>
+                        <option value="">Select room</option>
+                        <option>Standard Room</option>
+                        <option>Deluxe Room</option>
+                        <option>Premium Room</option>
+                        <option>Executive Suite</option>
+                        <option>Family Suite</option>
+                        <option>Presidential Suite</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Number of Guests</label>
+                    <select id="bookingGuests">
+                        <option>1</option>
+                        <option selected>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Number of Rooms</label>
+                    <select id="bookingRooms">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                    </select>
+                </div>
+
+                <div class="form-group full">
+                    <label>Special Requests</label>
+                    <textarea id="bookingRequests"
+                              placeholder="Any special requirements? (Optional)"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                    Submit Reservation Request →
+                </button>
+
+            </form>
+        </div>
+    </div>
+
+    <!-- ROOM DETAILS MODAL -->
+
+    <div class="modal" id="detailsModal">
+        <div class="modal-content">
+
+            <button class="modal-close" onclick="closeModal('detailsModal')">×</button>
+
+            <div class="eyebrow">Room Information</div>
+
+            <h2 id="detailTitle">Room Details</h2>
+
+            <p id="detailDescription"></p>
+
+            <div class="room-details-list" id="detailList"></div>
+
+            <button class="btn btn-primary" id="detailBookButton">
+                Book This Room →
+            </button>
+
+        </div>
+    </div>
+
+    <script>
+
+        // CURRENT YEAR
+
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+
+        // MOBILE NAVIGATION
+
+        function toggleMenu() {
+            document.getElementById("navLinks").classList.toggle("open");
+        }
+
+        document.querySelectorAll(".nav-links a").forEach(link => {
+            link.addEventListener("click", () => {
+                document.getElementById("navLinks").classList.remove("open");
+            });
+        });
+
+
+        // DATE VALIDATION
+
+        const today = new Date();
+        const todayString = today.toISOString().split("T")[0];
+
+        const dateFields = [
+            "quickCheckin",
+            "quickCheckout",
+            "bookingCheckin",
+            "bookingCheckout"
+        ];
+
+        dateFields.forEach(id => {
+            document.getElementById(id).min = todayString;
+        });
+
+
+        function setCheckoutMinimum(checkinId, checkoutId) {
+            const checkin = document.getElementById(checkinId);
+            const checkout = document.getElementById(checkoutId);
+
+            checkin.addEventListener("change", () => {
+                checkout.min = checkin.value;
+
+                if (checkout.value && checkout.value <= checkin.value) {
+                    checkout.value = "";
+                }
+            });
+        }
+
+        setCheckoutMinimum("quickCheckin", "quickCheckout");
+        setCheckoutMinimum("bookingCheckin", "bookingCheckout");
+
+
+        // ROOM FILTERS
+
+        function filterRooms(category, button) {
+
+            document.querySelectorAll(".filter-btn").forEach(btn => {
+                btn.classList.remove("active");
+            });
+
+            button.classList.add("active");
+
+            document.querySelectorAll(".room-card").forEach(card => {
+
+                const cardCategory = card.dataset.category;
+
+                if (category === "all" || cardCategory === category) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+
+            });
+        }
+
+
+        // ROOM DETAILS
+
+        const roomDetails = {
+
+            standard: {
+                title: "Standard Room",
+                description: "A practical and comfortable room for guests looking for quality accommodation at an affordable price.",
+                price: "₹2,499 per night",
+                size: "220 sq. ft.",
+                guests: "Maximum 2 guests",
+                bed: "1 King Size Bed",
+                bathroom: "Private attached bathroom with shower",
+                entertainment: "Television with selected channels",
+                connectivity: "Complimentary Wi-Fi",
+                food: "Room service available on request",
+                cleaning: "Daily housekeeping",
+                facilities: "Air conditioning, wardrobe, work table and toiletries"
+            },
+
+            deluxe: {
+                title: "Deluxe Room",
+                description: "A beautifully furnished room with extra space, premium interiors and upgraded amenities.",
+                price: "₹3,499 per night",
+                size: "300 sq. ft.",
+                guests: "Maximum 2 guests",
+                bed: "1 King Size Bed",
+                bathroom: "Private bathroom with premium fittings",
+                entertainment: "Smart TV",
+                connectivity: "High-speed complimentary Wi-Fi",
+                food: "Room service and mini fridge",
+                cleaning: "Daily housekeeping",
+                facilities: "Air conditioning, wardrobe, work desk and premium toiletries"
+            },
+
+            premium: {
+                title: "Premium Room",
+                description: "Enjoy a more refined stay with elegant furnishings, enhanced amenities and a pleasant city view.",
+                price: "₹4,499 per night",
+                size: "360 sq. ft.",
+                guests: "Maximum 2 guests",
+                bed: "1 King Size Bed",
+                bathroom: "Premium bathroom with modern fittings",
+                entertainment: "Smart TV",
+                connectivity: "High-speed complimentary Wi-Fi",
+                food: "Mini bar and room service",
+                cleaning: "Daily housekeeping",
+                facilities: "City view, premium toiletries and dedicated work area"
+            },
+
+            executive: {
+                title: "Executive Suite",
+                description: "A spacious luxury suite designed for business and leisure travellers who appreciate privacy and sophistication.",
+                price: "₹6,999 per night",
+                size: "500 sq. ft.",
+                guests: "Maximum 2 guests",
+                bed: "1 King Size Bed",
+                bathroom: "Luxury bathroom with bathtub",
+                entertainment: "Smart TV and entertainment system",
+                connectivity: "High-speed complimentary Wi-Fi",
+                food: "Mini bar and dedicated room service",
+                cleaning: "Daily housekeeping and priority service",
+                facilities: "Separate living room, work desk and premium amenities"
+            },
+
+            family: {
+                title: "Family Suite",
+                description: "A spacious accommodation designed for families with comfortable sleeping arrangements and a shared lounge.",
+                price: "₹7,499 per night",
+                size: "650 sq. ft.",
+                guests: "Maximum 4 guests",
+                bed: "Two beds across two bedrooms",
+                bathroom: "Private attached bathroom",
+                entertainment: "Smart TV",
+                connectivity: "High-speed complimentary Wi-Fi",
+                food: "Dining area and room service",
+                cleaning: "Daily housekeeping",
+                facilities: "Two bedrooms, family lounge and additional storage"
+            },
+
+            presidential: {
+                title: "Presidential Suite",
+                description: "Our finest accommodation, combining generous space, sophisticated interiors and exclusive personalized services.",
+                price: "₹12,999 per night",
+                size: "1000 sq. ft.",
+                guests: "Maximum 4 guests",
+                bed: "Two King Size Beds",
+                bathroom: "Luxury bathroom with bathtub",
+                entertainment: "Premium entertainment system",
+                connectivity: "High-speed complimentary Wi-Fi",
+                food: "Private dining area and premium room service",
+                cleaning: "Daily housekeeping and VIP assistance",
+                facilities: "Private lounge, luxury interiors and exclusive services"
+            }
+
+        };
+
+
+        function showRoomDetails(room) {
+
+            const details = roomDetails[room];
+
+            document.getElementById("detailTitle").textContent = details.title;
+
+            document.getElementById("detailDescription").textContent = details.description;
+
+            const list = document.getElementById("detailList");
+
+            const labels = {
+                price: "Room Price",
+                size: "Room Size",
+                guests: "Guest Capacity",
+                bed: "Bed Arrangement",
+                bathroom: "Bathroom",
+                entertainment: "Entertainment",
+                connectivity: "Internet",
+                food: "Food & Dining",
+                cleaning: "Housekeeping",
+                facilities: "Other Facilities"
+            };
+
+            list.innerHTML = Object.keys(labels).map(key => `
+                <div>
+                    <strong>${labels[key]}:</strong>
+                    ${details[key]}
+                </div>
+            `).join("");
+
+            document.getElementById("detailBookButton").onclick = () => {
+                closeModal("detailsModal");
+                openBooking(details.title);
+            };
+
+            document.getElementById("detailsModal").classList.add("show");
+        }
+
+
+        // BOOKING MODAL
+
+        function openBooking(room = "") {
+
+            document.getElementById("bookingModal").classList.add("show");
+
+            if (room) {
+                document.getElementById("bookingRoomType").value = room;
+            }
+
+            const quickCheckin = document.getElementById("quickCheckin").value;
+            const quickCheckout = document.getElementById("quickCheckout").value;
+
+            if (quickCheckin) {
+                document.getElementById("bookingCheckin").value = quickCheckin;
+            }
+
+            if (quickCheckout) {
+                document.getElementById("bookingCheckout").value = quickCheckout;
+            }
+
+            document.getElementById("bookingGuests").value =
+                document.getElementById("quickGuests").value;
+
+            document.getElementById("bookingRooms").value =
+                document.getElementById("quickRooms").value;
+        }
+
+
+        function closeModal(id) {
+            document.getElementById(id).classList.remove("show");
+        }
+
+
+        // CLOSE MODAL WHEN CLICKING OUTSIDE
+
+        document.querySelectorAll(".modal").forEach(modal => {
+
+            modal.addEventListener("click", event => {
+
+                if (event.target === modal) {
+                    modal.classList.remove("show");
+                }
+
+            });
+
+        });
+
+
+        // QUICK AVAILABILITY FORM
+
+        document.getElementById("quickBooking").addEventListener("submit", event => {
+
+            event.preventDefault();
+
+            const checkin = document.getElementById("quickCheckin").value;
+            const checkout = document.getElementById("quickCheckout").value;
+
+            if (checkout <= checkin) {
+                alert("Check-out date must be after check-in date.");
+                return;
+            }
+
+            openBooking(
+                document.getElementById("quickRoomType").value === "Any Room"
+                    ? ""
+                    : document.getElementById("quickRoomType").value
+            );
+
+            document.getElementById("bookingCheckin").value = checkin;
+            document.getElementById("bookingCheckout").value = checkout;
+
+        });
+
+
+        // RESERVATION FORM
+
+        document.getElementById("bookingForm").addEventListener("submit", event => {
+
+            event.preventDefault();
+
+            const checkin = document.getElementById("bookingCheckin").value;
+            const checkout = document.getElementById("bookingCheckout").value;
+
+            if (checkout <= checkin) {
+                alert("Check-out date must be after check-in date.");
+                return;
+            }
+
+            const bookingData = {
+
+                name: document.getElementById("bookingName").value,
+                email: document.getElementById("bookingEmail").value,
+                phone: document.getElementById("bookingPhone").value,
+
+                checkin: checkin,
+                checkout: checkout,
+
+                room_type: document.getElementById("bookingRoomType").value,
+                guests: document.getElementById("bookingGuests").value,
+                rooms: document.getElementById("bookingRooms").value,
+
+                requests: document.getElementById("bookingRequests").value
+
+            };
+
+            console.log("Reservation Request:", bookingData);
+
+            alert(
+                "Thank you, " + bookingData.name + "!\n\n" +
+                "Your reservation request has been submitted.\n" +
+                "Room: " + bookingData.room_type + "\n" +
+                "Check-in: " + bookingData.checkin + "\n" +
+                "Check-out: " + bookingData.checkout + "\n\n" +
+                "Our team will contact you shortly to confirm availability."
+            );
+
+            document.getElementById("bookingForm").reset();
+
+            closeModal("bookingModal");
+
+        });
+
+
+        // CONTACT FORM
+
+        document.getElementById("contactForm").addEventListener("submit", event => {
+
+            event.preventDefault();
+
+            alert(
+                "Thank you for contacting Grand Vista Hotel!\n" +
+                "Our team will get back to you shortly."
+            );
+
+            event.target.reset();
+
+        });
+
+    </script>
+
+</body>
+</html>
